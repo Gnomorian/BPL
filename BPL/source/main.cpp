@@ -1,7 +1,7 @@
 #include <cstdio>
-#include "File.h"
-#include "Lex.h"
-#include "BPLException.h"
+#include "File.hpp"
+#include "Lex.hpp"
+#include "BPLException.hpp"
 
 int main(int argc, char* args[])
 {

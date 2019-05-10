@@ -9,27 +9,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Lex.cpp">
+    <ClCompile Include="source\BPLException.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="source\File.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="File.cpp">
+    <ClCompile Include="source\Lex.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="BPLException.cpp">
+    <ClCompile Include="source\main.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lex.h">
+    <ClInclude Include="include\Lex.hpp">
       <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="File.h">
+    <ClInclude Include="include\File.hpp">
       <Filter>header</Filter>
     </ClInclude>
-    <ClInclude Include="BPLException.h">
+    <ClInclude Include="include\BPLException.hpp">
       <Filter>header</Filter>
     </ClInclude>
   </ItemGroup>

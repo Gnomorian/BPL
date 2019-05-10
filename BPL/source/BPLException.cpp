@@ -1,6 +1,5 @@
-#include "BPLException.h"
-#include <ostream>
-#include <strstream>
+#include "BPLException.hpp"
+#include <string>
 
 
 BPLException::BPLException(const char* message, const char* filename, const char* function, int line, int errorCode) noexcept

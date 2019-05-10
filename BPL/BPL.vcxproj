@@ -19,15 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BPLException.cpp" />
-    <ClCompile Include="File.cpp" />
-    <ClCompile Include="Lex.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\BPLException.cpp" />
+    <ClCompile Include="source\File.cpp" />
+    <ClCompile Include="source\Lex.cpp" />
+    <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BPLException.h" />
-    <ClInclude Include="File.h" />
-    <ClInclude Include="Lex.h" />
+    <ClInclude Include="include\BPLException.hpp" />
+    <ClInclude Include="include\File.hpp" />
+    <ClInclude Include="include\Lex.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -84,18 +84,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\$(Platform)\Bin</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\$(Platform)\Wrk</IntDir>
+    <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\$(Platform)\Bin</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\$(Platform)\Wrk</IntDir>
+    <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Configuration)\$(Platform)\Bin</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\$(Platform)\Wrk</IntDir>
+    <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)$(Configuration)\$(Platform)\Bin</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\$(Platform)\Wrk</IntDir>
+    <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

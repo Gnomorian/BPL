@@ -1,6 +1,5 @@
-#include "File.h"
-#include "BPLException.h"
-#include <strstream>
+#include "File.hpp"
+#include "BPLException.hpp"
 #include <string>
 
 File::File(const char* fileName)

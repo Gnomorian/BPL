@@ -1,5 +1,5 @@
-#include "Lex.h"
-#include "BPLException.h"
+#include "Lex.hpp"
+#include "BPLException.hpp"
 #include <iostream>
 
 
