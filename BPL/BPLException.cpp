@@ -11,7 +11,7 @@ BPLException::BPLException(const char* message, const char* filename, const char
 	this->line = line;
 	this->errorCode = errorCode;
 	memset(buffer, 0, sizeof(buffer));
-	sprintf_s(buffer, "[%d] \"%s\" %s::%s(%d)\n", errorCode, message, fileName, function, line);
+	sprintf_s(buffer, "[%d] \"%s\" at %s::%s(%d)\n", errorCode, message, fileName, function, line);
 }
 
 

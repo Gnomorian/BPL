@@ -3,18 +3,23 @@
 #include "Lex.h"
 #include "BPLException.h"
 
-#define SOURCE_FILE "C:\\Users\\William\\source\\repos\\BCC\\Debug\\x64\\Bin\\main.bc"
-
 int main(int argc, char* args[])
 {
-	File file(SOURCE_FILE);
-	token** tokens = nullptr;
+	if (argc < 2)
+	{
+		puts("No source file in exe arguments");
+		getchar();
+		return -1;
+	}
+
+	File file(args[1]);
+
 	try {
 		const char* source = file.GetString();
 
 		Lex lex;
-		tokens = lex.lex_getTokens(source);
-		lex.lex_dumpTokens(tokens, true);
+		(void)lex.getTokens(source);
+		lex.dumpTokens();
 	}
 	catch (BPLException& e)
 	{
@@ -23,9 +28,4 @@ int main(int argc, char* args[])
 	
 
 	(void)getchar();
-	// cleanup
-	if (tokens == nullptr)
-		return -1;
-	for (int i = 0; tokens[i]; i++)
-		free(tokens[i]);
 }

@@ -1,25 +1,34 @@
 #include "File.h"
 #include "BPLException.h"
+#include <strstream>
+#include <string>
 
 File::File(const char* fileName)
 {
+	char buffer[256] = { 0 };
+	GetCurrentDirectory(256, buffer);
+	this->fileName = buffer;
+	this->fileName += "\\";
+	this->fileName += fileName;
 	file = nullptr;
-	this->fileName = fileName;
 }
 
 
 File::~File()
 {
+
 }
 
 bool File::Open()
 {
 	// open the file
-	file = CreateFile(fileName, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+	file = CreateFile(fileName.c_str(), GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 	if (file == INVALID_HANDLE_VALUE)
 	{
 		DWORD result = GetLastError();
-		throw BPLException("Cant open file", __FILE__, __FUNCTION__, __LINE__, result);
+		char msg[256] = { 0 };
+		sprintf_s(msg, "Cant open file '%s'", fileName.c_str());
+		throw BPLException(msg, __FILE__, __FUNCTION__, __LINE__, result);
 		return false;
 	}
 	return true;
@@ -39,7 +48,9 @@ const char* File::GetString()
 	if (!ReadFile(file, buffer, length, 0, 0))
 	{
 		DWORD result = GetLastError();
-		throw BPLException("Cant open file", __FILE__, __FUNCTION__, __LINE__, result);
+		char msg[256] = { 0 };
+		sprintf_s(msg, "Cant read file '%s'", fileName);
+		throw BPLException(msg, __FILE__, __FUNCTION__, __LINE__, result);
 	}
 
 	return buffer;

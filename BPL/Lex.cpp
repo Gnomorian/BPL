@@ -1,4 +1,5 @@
 #include "Lex.h"
+#include "BPLException.h"
 #include <iostream>
 
 
@@ -9,6 +10,8 @@ Lex::Lex()
 
 Lex::~Lex()
 {
+	for (auto token : tokens)
+		delete token;
 }
 
 token* Lex::GetNextToken(char** source)
@@ -40,10 +43,8 @@ end:
 	return tokn;
 }
 
-token** Lex::lex_getTokens(const char* source)
+std::vector<token*>& Lex::getTokens(const char* source)
 {
-	// TODO: replace this with a vector, when you make one.
-	token* tokens[1000] = { 0 };
 	int tokensArrayPos = 0;
 	char* current = (char*)source;
 	token* newestToken = 0;
@@ -51,26 +52,20 @@ token** Lex::lex_getTokens(const char* source)
 	// fill tokens array with the next token until it returns null
 	do {
 		if (newestToken)
-			tokens[tokensArrayPos++] = newestToken;
+		this->tokens.push_back(newestToken);
 		newestToken = GetNextToken(&current);
 	} while (newestToken != 0);
 
-	int length = 0;
-	for (; tokens[length]; length++);
-	if (length == 0)
-		return 0;
-
-
-	token * *t = (token**)malloc((length + 1) * sizeof(token*));
-	memcpy(t, tokens, (length + 1) * sizeof(token*));
-
-	return t;
+	// throw an exception if we got not tokens, possibly an error or wrong file.
+	if (tokens.size() == 0)
+		throw BPLException("Found no tokens, possibly error?", __FILE__, __FUNCTION__, __LINE__, 3);
+	return tokens;
 }
 
-void Lex::lex_dumpTokens(token * *tokens, bool printWhitespace)
+void Lex::dumpTokens(bool printWhitespace)
 {
 	//TODO: change to use name for the int representation of the token
-	for (int i = 0; tokens[i]; i++)
+	for (int i = 0; i < tokens.size(); i++)
 	{
 		token* t = tokens[i];
 		if (!printWhitespace && t->type == T_WHITESPACE)
@@ -91,7 +86,7 @@ int Lex::FindSpace(char* source, token** tokn)
 		// find the last space character in this sequence
 		int length = 0;
 		for (length; isspace(*end); length++) { ++end; }
-		token* t = (token*)malloc(sizeof(token));
+		token* t = new token;
 		t->type = T_WHITESPACE;
 		t->valuePos = source;
 		t->optValueLen = length;

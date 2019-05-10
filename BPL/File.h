@@ -1,9 +1,10 @@
 #pragma once
 #include <Windows.h>
+#include <string>
 
 class File
 {
-	const char* fileName;
+	std::string fileName;
 	HANDLE file;
 public:
 	File(const char* fileName);
